@@ -21,7 +21,7 @@ Este é um projeto full stack que consiste em:
 Clone este repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repo.git
+git clone https://github.com/Teixeira00/teste-dev-fullstack.git
 cd seu-repo 
 ```
 
