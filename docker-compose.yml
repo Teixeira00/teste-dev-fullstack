@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+
+  app:
+    build:
+      context: ./backend
+    container_name: laravel-app
+    working_dir: /var/www
+    volumes:
+      - ./backend:/var/www
+    ports:
+      - "9000:9000"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: vue-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
