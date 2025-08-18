@@ -5,31 +5,25 @@ Este é um projeto full stack que consiste em:
 - **Frontend**: Vue.js
 - **Backend**: Laravel
 - **Banco de dados**: PostgreSQL (hospedado no Supabase)
-- **Containerização**: Docker + Docker Compose
+- **Containerização**: Docker + Docker Compose (ainda em desenvolvimento)
 
 ---
 
-##  Requisitos
+## ⚠️ Aviso importante
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
+> **O deploy com Docker Compose ainda não está funcional**.  
+> Por enquanto, o projeto funciona corretamente apenas rodando o frontend e backend **separadamente** em servidores locais.
 
----
+##  Como executar o projeto manualmente
 
-##  Como executar o projeto
-
-Clone este repositório:
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/Teixeira00/teste-dev-fullstack.git
-cd seu-repo 
+cd teste-dev-fullstack
 ```
 
-1. Suba os containers com Docker
 
-```bash
-docker-compose up --build
-```
 
 Aguarde o build completar.
 
@@ -43,6 +37,17 @@ O backend (Laravel) roda na porta 9000.
 O backend está conectado a um banco de dados PostgreSQL hospedado na Supabase.
 As configurações estão definidas no arquivo /backend/.env:
 
+### 2. Rode o backend (Laravel)
+
+```bash
+cd backend
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan serve
+```
+Certifique-se de configurar corretamente o arquivo .env com os dados do Supabase.
+
 ```bash
 DB_CONNECTION=pgsql
 DB_HOST=db.vvntnimgjbwmqdhzfyen.supabase.co
@@ -51,7 +56,22 @@ DB_DATABASE=postgres
 DB_USERNAME=postgres
 DB_PASSWORD=ZvrvCvK1QCcI1Q0l
 ```
-IMPORTANTE: O banco Supabase está online, não depende de container local
+IMPORTANTE: O banco de dados é PostgreSQL hospedado no Supabase e está online, não depende de container local
+
+### 3. Rode o Frontend (Vue)
+
+Abra outro terminal e execute:
+
+```bash  
+cd frontend
+npm install
+npm run dev
+```
+4. Acesse no navegador:
+
+Frontend: http://localhost:5173
+
+Backend (API): http://127.0.0.1:8000
 
 ## passo a passo de como foi feito
 
