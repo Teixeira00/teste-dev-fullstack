@@ -30,10 +30,11 @@ cd backend
 composer install
 cp .env.example .env
 php artisan key:generate
-php artisan serve
 ```
-Certifique-se de configurar corretamente o arquivo .env com os dados do Supabase.
+Certifique-se de configurar corretamente o arquivo .env com os dados do Supabase e o API_KEY.
 
+
+- banco de dados
 ```bash
 DB_CONNECTION=pgsql
 DB_HOST=db.vvntnimgjbwmqdhzfyen.supabase.co
@@ -42,6 +43,11 @@ DB_DATABASE=postgres
 DB_USERNAME=postgres
 DB_PASSWORD=ZvrvCvK1QCcI1Q0l
 ```
+- chave API (chave meramente para testes)
+```bash
+API_KEY=senha123
+```
+
 IMPORTANTE: O banco de dados é PostgreSQL hospedado no Supabase e está online, não depende de container local
 
 ### 3. Rode o Frontend (Vue)
