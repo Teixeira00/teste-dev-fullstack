@@ -33,7 +33,6 @@ php artisan key:generate
 ```
 Certifique-se de configurar corretamente o arquivo .env com os dados do Supabase e o API_KEY.
 
-
 - banco de dados
 ```bash
 DB_CONNECTION=pgsql
@@ -47,6 +46,12 @@ DB_PASSWORD=ZvrvCvK1QCcI1Q0l
 ```bash
 API_KEY=senha123
 ```
+Rodar backend:
+
+```bash
+php artisan serve
+```
+
 
 IMPORTANTE: O banco de dados é PostgreSQL hospedado no Supabase e está online, não depende de container local
 
