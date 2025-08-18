@@ -1,29 +1,29 @@
 <template>
-  <div class="td">
-    <div class="container">
-      <h1>Lista Estoque NM</h1>
 
-      <div class="top-bar">
-        <button @click="openAddModal">ADD Produto</button>
-        <input v-model="search" placeholder="Filtrar pelo nome..." />
-      </div>
+  <div class="container">
+    <h1>Lista Estoque NM</h1>
 
-      <ProductList
-        :products="filteredProducts"
-        @edit="openEditModal"
-        @delete="deleteProduct"
-      />
-
-      <!-- Usa o modal externo -->
-      <ProductModal
-        :visible="showModal"
-        :product="newProduct"
-        :isEditing="isEditing"
-        @save="saveProduct"
-        @close="closeModal"
-      />
+    <div class="top-bar">
+      <button @click="openAddModal">ADD Produto</button>
+      <input v-model="search" placeholder="Filtrar pelo nome..." />
     </div>
+
+    <ProductList
+      :products="filteredProducts"
+      @edit="openEditModal"
+      @delete="deleteProduct"
+    />
+
+    <!-- Usa o modal externo (POPUP) -->
+    <ProductModal
+      :visible="showModal"
+      :product="newProduct"
+      :isEditing="isEditing"
+      @save="saveProduct"
+      @close="closeModal"
+    />
   </div>
+
 </template>
 
 <script setup>

@@ -38,7 +38,6 @@ export default {
 
 .name {
   font-size: 16px;
-  font-weight: bold;
 }
 
 .description {
