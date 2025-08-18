@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   app:
@@ -8,12 +8,27 @@ services:
     working_dir: /var/www
     volumes:
       - ./backend:/var/www
-      - ./backend/.env:/var/www/.env
     ports:
-      - "9000:9000"
-    networks:
-      - app-network
-    command: sh -c "composer install && php artisan serve --host=0.0.0.0 --port=9000"
+      - "8000:8000"
+    environment:
+      - DB_CONNECTION=pgsql
+      - DB_HOST=db.vvntnimgjbwmqdhzfyen.supabase.co
+      - DB_PORT=5432
+      - DB_DATABASE=postgres
+      - DB_USERNAME=postgres
+      - DB_PASSWORD=ZvrvCvK1QCcI1Q0l
+      - APP_KEY=base64:nq37KyUJfNqHtY7U7O4uQkyBzaifyEGmiF/6h/f8PwQ=
+      - APP_ENV=local
+    network_mode: "host"  # Isso força o container a usar a rede do host
+    command: >
+      sh -c "
+        cp .env.example .env &&
+        composer install &&
+        php artisan key:generate &&
+        until php artisan migrate; do sleep 3; done &&
+        php artisan serve --host=0.0.0.0 --port=8000
+      "
+
 
   frontend:
     build:
@@ -21,8 +36,49 @@ services:
     container_name: vue-frontend
     ports:
       - "5173:5173"
-    networks:
-      - app-network
+    command: npm run dev -- --host=0.0.0.0 --port=5173
 
 networks:
   app-network:
+    external: true
+# version: "3.8"
+
+# services:
+#   app:
+#     build:
+#       context: ./backend
+#     container_name: laravel-app
+#     working_dir: /var/www
+#     volumes:
+#       - ./backend:/var/www
+#     ports:
+#       - "8000:8000"
+#     environment:
+#       - DB_CONNECTION=pgsql
+#       - DB_HOST=db.vvntnimgjbwmqdhzfyen.supabase.co
+#       - DB_PORT=5432
+#       - DB_DATABASE=postgres
+#       - DB_USERNAME=postgres
+#       - DB_PASSWORD=ZvrvCvK1QCcI1Q0l
+#       - APP_KEY=base64:nq37KyUJfNqHtY7U7O4uQkyBzaifyEGmiF/6h/f8PwQ=
+#       - APP_ENV=local
+#     network_mode: "host"
+#     command: >
+#       sh -c "
+#         composer install &&
+#         php artisan key:generate &&
+#         until php artisan migrate; do sleep 3; done &&
+#         php artisan serve --host=0.0.0.0 --port=8000
+#       "
+
+#   frontend:
+#     build:
+#       context: ./frontend
+#     container_name: vue-frontend
+#     ports:
+#       - "5173:5173"
+#     command: npm run dev -- --host=0.0.0.0 --port=5173
+
+# networks:
+#   app-network:
+#     external: true
