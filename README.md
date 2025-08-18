@@ -23,20 +23,6 @@ git clone https://github.com/Teixeira00/teste-dev-fullstack.git
 cd teste-dev-fullstack
 ```
 
-
-
-Aguarde o build completar.
-
-Acesse o frontend (Vue) em:
-👉 http://localhost:8080
-
-O backend (Laravel) roda na porta 9000.
-
-## Configuração do banco de dados
-
-O backend está conectado a um banco de dados PostgreSQL hospedado na Supabase.
-As configurações estão definidas no arquivo /backend/.env:
-
 ### 2. Rode o backend (Laravel)
 
 ```bash
