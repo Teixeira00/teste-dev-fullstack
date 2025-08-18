@@ -19,7 +19,7 @@ services:
       context: ./frontend
     container_name: vue-frontend
     ports:
-      - "8080:80"
+      - "5173:5173"
     networks:
       - app-network
 
